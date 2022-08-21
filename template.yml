@@ -27,9 +27,9 @@ Resources:
                   default:
                     statusCode: "200"
                     responseTemplates:
-                      application/json: "{\"sourceIp\" : \"$context.identity.sourceIp\", \"apiVersion\": \"1.1\"}"
+                      application/json: '{"sourceIp" : "$context.identity.sourceIp", "apiVersion": "1.1"}'
                 requestTemplates:
-                  application/json: "{\"statusCode\": 200}"
+                  application/json: '{"statusCode": 200}'
                 passthroughBehavior: "when_no_templates"
                 type: "mock"
         components:
@@ -40,4 +40,9 @@ Resources:
       Name: EducativeRestAPI
       Description: "Rest API for Educative API Gateway Course"
       Mode: overwrite
-
+  APIDeployment:
+    Type: AWS::ApiGateway::Deployment
+    Properties:
+      RestApiId:
+        Ref: RestAPI
+      StageName: v1
